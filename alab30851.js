@@ -80,7 +80,7 @@ function stringsLongerThan(strings, length) {
     }
     return result;
   }
-  
+
 // Take a number, n, and print every number between 1 and n without using loops. Use recursion.
 function printNumbersRecursively(n) {
     if (n > 0) {
@@ -88,8 +88,6 @@ function printNumbersRecursively(n) {
       console.log(n);
     }
   }
-
-
 
 
 console.log("Sum of numbers:", sumOfNumbers(numbers));
@@ -100,3 +98,78 @@ console.log("Strings longer than 3:", stringsLongerThan(strings, 3));
 
 console.log("Numbers 1 to 5 using recursion:");
 printNumbersRecursively(5);
+
+
+/**
+ * 
+ * Part 2 Thinking Methodically
+ */
+
+const data = [
+    { id: "42", name: "Bruce", occupation: "Knight", age: "41" },
+    { id: "48", name: "Barry", occupation: "Runner", age: "25" },
+    { id: "57", name: "Bob", occupation: "Fry Cook", age: "19" },
+    { id: "63", name: "Blaine", occupation: "Quiz Master", age: "58" },
+    { id: "7", name: "Bilbo", occupation: "None", age: "111" }
+  ];
+  
+  // Sort the array by age
+  const sortedByAge = data.slice().sort((a, b) => parseInt(a.age) - parseInt(b.age));
+  
+  // Filter entries with an age greater than 50
+  const ageLessThan50 = data.filter(entry => parseInt(entry.age) <= 50);
+  
+  // Map the array to change the "occupation" key to "job" and increment every age by 1
+  const mappedData = data.map(entry => ({
+    ...entry,
+    job: entry.occupation,
+    age: parseInt(entry.age) + 1
+  }));
+  
+  // Use reduce to calculate the sum of ages
+  const sumOfAges = data.reduce((sum, entry) => sum + parseInt(entry.age), 0);
+  
+  // Calculate the average age
+  const averageAge = sumOfAges / data.length;
+  
+  // Display the results
+  console.log("Sorted by Age:", sortedByAge);
+  console.log("Age Less Than 50:", ageLessThan50);
+  console.log("Mapped Data:", mappedData);
+  console.log("Sum of Ages:", sumOfAges);
+  console.log("Average Age:", averageAge);
+
+  /**
+   * 
+   * Part 3 Thinking Critically 
+   */
+
+// Function to increment the age field of an object
+function incrementAge(obj) {
+    obj.age = (obj.age || 0) + 1;
+    obj.updated_at = new Date();
+    return obj;
+  }
+  
+  // Function to make a copy of an object, increment its age field, and return the copy
+  function incrementAgeAndCopy(obj) {
+    const copy = { ...obj };
+    copy.age = (copy.age || 0) + 1;
+    copy.updated_at = new Date();
+    return copy;
+  }
+  
+  // Example data
+  const exampleObject = {
+    id: "42",
+    name: "Bruce",
+    occupation: "Knight",
+    age: 41
+  };
+  
+  // Testing the functions
+  const incrementedObject = incrementAge(exampleObject);
+  console.log("Incremented Object:", incrementedObject);
+  
+  const copiedAndIncrementedObject = incrementAgeAndCopy(exampleObject);
+  console.log("Copied and Incremented Object:", copiedAndIncrementedObject);
